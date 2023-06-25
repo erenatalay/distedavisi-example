@@ -1,0 +1,26 @@
+import { Request, Response, NextFunction, Errback } from "express";
+import { CustomError as CustomErrorType } from "../interface/error/CustomError";
+import CustomError from "../utils/CustomError";
+import { UniqueText } from "../utils/UniqueText";
+import { TypeOrmError } from "../interface/error/TypeORMError";
+
+export default (
+  error: CustomErrorType,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+
+  const uniqueError = error as unknown as TypeOrmError;
+  if (uniqueError?.driverError?.code === "23505") {
+    return next(
+      new CustomError(UniqueText(uniqueError.driverError.detail), 400)
+    );
+  }
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message || "Internal Server Error.",
+    },
+  });
+};
