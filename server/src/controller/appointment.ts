@@ -21,7 +21,7 @@ class Appointments {
       res: Response,
       next: NextFunction
     ) => {
-      const doctors = await AppointmentService.list({user : req.user.id}, [
+      const doctors = await AppointmentService.list({ user: req.user.id }, [
         "user",
         "doctor",
         "clinic",
@@ -64,11 +64,17 @@ class Appointments {
         return next(new CustomError("2 payment systems cannot be used at the same time.", 400));
       }
 
+      console.log("tarihinBurada",new Date(dateTime).getHours())
+      if (6 >=  Number(new Date(dateTime).getHours()) &&  new Date(dateTime).getHours() <= 19) {
+        return next(new CustomError("You can't get it between these hours", 400));
+      }
+
+
       const appointment = await AppointmentService.create({
         clinic: clinics,
         treatment: treatments,
         doctor: doctors,
-        linkPayment : linkPayments,
+        linkPayment: linkPayments,
         payment: payments,
         user: req.user,
         dateTime,
@@ -137,7 +143,7 @@ class Appointments {
       next: NextFunction
     ) => {
       const { id } = req.params as unknown as Doctors;
-      const appointment = await AppointmentService.find({ id },[
+      const appointment = await AppointmentService.find({ id }, [
         "user",
         "doctor",
         "clinic",
