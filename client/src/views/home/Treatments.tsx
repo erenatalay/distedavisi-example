@@ -85,7 +85,7 @@ const Treatments = () => {
                                         <Button
                                             color={"primary"}
                                             variant={"contained"}
-                                            onClick={() => history.push(`/payment?commission=${query.get("amount")}&clinic=${query.get("clinic")}&treatment=${row.id}&price=${row.price}`)}
+                                            onClick={() => history.push(`/payment?commission=${query.get("amount")}&clinic=${query.get("clinic")}&treatment=${row.id}&price=${row.price}&doctor=${query.get("doctor")}`)}
                                         >
                                             Select
                                         </Button>

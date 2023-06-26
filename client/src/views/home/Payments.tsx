@@ -4,6 +4,7 @@ import Header from '../../components/layouts'
 import { PaymentRequest } from '../../@types/request/PaymentRequest'
 import { useHistory, useLocation } from 'react-router-dom';
 import { usePaymentMutation } from '../../redux/api/payment';
+import { useCreateAppointmentMutation } from '../../redux/api/appointment';
 function cc_format(value: string) {
     const v = value
         ?.replace(/\s+/g, "")
@@ -31,11 +32,13 @@ const handleMMYYYY = (text: string) => {
 }
 const Payments = () => {
     const [payment] = usePaymentMutation();
+    const [createAppointment] = useCreateAppointmentMutation()
     function useQuery() {
         const { search } = useLocation();
         return React.useMemo(() => new URLSearchParams(search), [search]);
     }
     const [cardData, setCard] = useState<PaymentRequest>({} as PaymentRequest)
+    const [dateTime, setDate] = useState<Date>(new Date())
     const history = useHistory()
     let query = useQuery();
     const handleChange = ({ target: { name, value } }: any) => {
@@ -44,16 +47,30 @@ const Payments = () => {
             [name]: value,
         })
     }
+
+    const handleChangeDate = ({ target: { name, value } }: any) => {
+        setDate(value)
+    }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         payment({
             ...cardData,
             amount,
-            treatment : Number(query.get("treatment")),
-            clinic : Number(query.get("clinic")),
-        }).then(() => {
-            alert("appointment created successfully")
-            history.push("/appointment")
+            treatment: Number(query.get("treatment")),
+            clinic: Number(query.get("clinic")),
+        }).then((res: any) => {
+            const paymentId = res.data.data.id
+            createAppointment({
+                treatment: Number(query.get("treatment")),
+                clinic: Number(query.get("clinic")),
+                doctor: Number(query.get("doctor")),
+                payment: Number(paymentId),
+                dateTime: dateTime
+            }).then(() => {
+                alert("appointment created successfully")
+                window.location.href = "/#/appointment"
+
+            })
         }).catch((error) => {
             window.alert(error.data.error.message);
         })
@@ -77,6 +94,20 @@ const Payments = () => {
                         alignItems: 'center',
                     }}
                 >
+
+
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="dateTime"
+                        onChange={handleChangeDate}
+                        label="Appointment Date"
+                        value={dateTime}
+                        type="datetime-local"
+                        id="birthday"
+                        autoFocus
+                    />
 
                     <Typography component="h1" variant="h5">
                         Payment
@@ -118,6 +149,7 @@ const Payments = () => {
                             inputProps={{ maxLength: 5 }}
 
                         />
+
                         <TextField
                             margin="normal"
                             required

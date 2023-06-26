@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Appointment } from "../../@types/response/Appointment";
 import { AppointmentRequest } from "../../@types/request/AppointmentRequest";
+import { AppointmentCreateRequest } from "../../@types/request/AppointmentCreateRequest";
 
 export const appointmentApi = createApi({
   reducerPath: "appointmentApi",
@@ -24,6 +25,13 @@ export const appointmentApi = createApi({
         },
       }),
     }),
+    createAppointment: builder.mutation<Appointment, AppointmentCreateRequest>({
+      query: (body) => ({
+        url: "/appointment",
+        method: "POST",
+        body,
+      }),
+    }),
     appointment: builder.query<Appointment, void>({
       query: () => ({
         url: "/appointment",
@@ -33,4 +41,4 @@ export const appointmentApi = createApi({
   }),
 });
 
-export const {useAppointmentQuery,useUpdateAppointmentMutation} = appointmentApi;
+export const {useAppointmentQuery,useUpdateAppointmentMutation,useCreateAppointmentMutation} = appointmentApi;

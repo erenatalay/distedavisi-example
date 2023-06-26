@@ -86,7 +86,7 @@ const Doctors = () => {
                                         <Button
                                             color={"primary"}
                                             variant={"contained"}
-                                            onClick={() => history.push(`/treatments/${row.id}?amount=${query.get("amount")}&clinic=${id}`)}
+                                            onClick={() => history.push(`/treatments/${row.id}?amount=${query.get("amount")}&clinic=${id}&doctor=${row.id}`)}
                                         >
                                             Select
                                         </Button>
