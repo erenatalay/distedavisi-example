@@ -245,7 +245,7 @@
         }
       }
     },
-    "/clinic/": {
+    "/clinics/": {
       "get": {
         "description": "",
         "parameters": [],
@@ -309,7 +309,7 @@
         }
       }
     },
-    "/clinic/{id}": {
+    "/clinics/{id}": {
       "get": {
         "description": "",
         "parameters": [

@@ -2,7 +2,7 @@ FROM node:lts-alpine
 
 RUN npm install -g nodemon
 
-WORKDIR /app
+WORKDIR /app/data
 
 COPY package.json .
 

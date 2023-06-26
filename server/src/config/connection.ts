@@ -19,15 +19,17 @@ class Database {
       const clinics = await ClinicsService.create({
           "name" : "Çınar polikinlik",
           "address" : "İstanbull osmangazi 600 evler",
-          "contactNumber" : "02242334502"
+          "contactNumber" : "02242334502",
+          "commissionRate" : "18"
+
       }) as Clinics
       await DoctorsService.create({
           "firstname" : "Joe",
           "lastname" : "Darwin",
           "phone" : "02242334502",
           "specialization" : "PROF",
-          "treatments" : [treatments.id],
-          "clinic" : clinics.id
+          "treatments" : [treatments],
+          "clinic" : clinics
       })
       console.log("Successfully connection database.");
     } catch (error) {

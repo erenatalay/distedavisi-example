@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     command: npm run start
     volumes:
-      - ./server:/app
-      - ./app/node_modules
+      - ./server:/app/data
+      - /app/data/node_modules
     ports:
       - "8080:8080"
     environment:
@@ -20,8 +20,8 @@ services:
       context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./client:/app
-      - ./app/node_modules
+      - ./client:/app/opt
+      - /app/opt/node_modules
     depends_on:
       - server
     ports:
