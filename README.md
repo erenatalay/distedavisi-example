@@ -13,3 +13,6 @@ http://localhost:8080/api-docs/
 To reach React.js
 
 http://localhost:3000/
+
+for the postman
+https://documenter.getpostman.com/view/13517814/2s93z862b6
