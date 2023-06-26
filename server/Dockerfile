@@ -1,12 +1,14 @@
 FROM node:lts-alpine
 
-WORKDIR /usr/app
+RUN npm install -g nodemon
 
-COPY package*.json ./
-RUN npm ci -qy
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
 
 COPY . .
-RUN npm install
 
 EXPOSE 8080
 

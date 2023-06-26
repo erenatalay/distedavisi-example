@@ -1,12 +1,13 @@
 version: '3'
 services:
   server:
-    build:
-      context: ./server/
-    command: /usr/app/node_modules/.bin/nodemon src/index.js
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    command: npm run start
     volumes:
-      - ./server/:/usr/app
-      - /usr/app/node_modules
+      - ./server:/app
+      - ./app/node_modules
     ports:
       - "8080:8080"
     environment:
@@ -15,12 +16,12 @@ services:
     networks:
       - node
   client:
-    build:
-      context: ./client/
-    command: npm start
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
     volumes:
-      - ./client/:/usr/app
-      - /usr/app/node_modules
+      - ./client:/app
+      - ./app/node_modules
     depends_on:
       - server
     ports:
@@ -42,7 +43,6 @@ services:
 
 volumes:
   data:
-  elasticsearch-data:
     driver: local
 networks:
   node:
