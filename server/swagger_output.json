@@ -588,88 +588,7 @@
           }
         ],
         "tags": [
-          "Doctors"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstname": {
-                  "example": "string"
-                },
-                "lastname": {
-                  "example": "string"
-                },
-                "phone": {
-                  "example": "string"
-                },
-                "specialization": {
-                  "example": "string"
-                },
-                "treatments": {
-                  "example": ["id"]
-                },
-                "clinic": {
-                  "example": "id"
-                }
-              }
-            }
-          }
-        ],
-        "tags": [
-          "Doctors"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Doctors"
+          "Treatments"
         ],
         "security": [
           {
@@ -685,6 +604,8 @@
           }
         }
       }
+  
+ 
     },
     "/doctors/": {
       "get": {
@@ -868,87 +789,6 @@
     },
     "/doctors/clinics/{id}": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Doctors"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstname": {
-                  "example": "string"
-                },
-                "lastname": {
-                  "example": "string"
-                },
-                "phone": {
-                  "example": "string"
-                },
-                "specialization": {
-                  "example": "string"
-                },
-                "treatments": {
-                  "example": ["id"]
-                },
-                "clinic": {
-                  "example": "id"
-                }
-              }
-            }
-          }
-        ],
-        "tags": [
-          "Doctors"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
         "description": "",
         "parameters": [
           {
