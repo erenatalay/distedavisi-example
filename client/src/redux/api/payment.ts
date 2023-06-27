@@ -20,6 +20,17 @@ export const paymentApi = createApi({
         method: "POST",
         body,
       }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        queryFulfilled
+          .then((response) => {
+            window.alert("Appointment created successfully");
+            window.location.href = "/#/appointment"
+
+          })
+          .catch(({ error }) => {
+            window.alert(error.data.error.message);
+          });
+      },
  
     }),
    

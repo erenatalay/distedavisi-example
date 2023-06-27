@@ -38,6 +38,7 @@ class Payments {
         cardNumber,
         description,
         treatment,
+        dateTime
       } = req.body;
       const clinics = await ClinicsService.find({ id: clinic }) as Clinics;
       const treatments = await TreatmentsService.find({ id: treatment }) as Treatments ;
@@ -48,6 +49,15 @@ class Payments {
         return next(new CustomError("There is no such clinics.", 400));
       }
       const amount = String( (100 / Number(clinics.commissionRate)) * Number(treatments.price))
+
+      if (6 >=  Number(new Date(dateTime).getHours())) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
+      }
+
+      if (new Date(dateTime).getHours() > 19) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
+      }
+
       const payments = await PaymentsService.create({
         appointment,
         cardCVV,

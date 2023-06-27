@@ -87,7 +87,7 @@ const Home = () => {
                   {/* <StyledTableCell component="th"> {numberDigts(row.attributes.price)} {row.attributes.currency}</StyledTableCell> */}
                 </StyledTableRow>
               ))}
-              <Pagination  count={data?.data?.total} defaultValue={page} onChange={(event: ChangeEvent<unknown>, page: number) => onChangePagination(event, page)} />
+              <Pagination  count={data?.data?.totalPages} defaultValue={page} onChange={(event: ChangeEvent<unknown>, page: number) => onChangePagination(event, page)} />
             </TableBody>
           </Table>
         </TableContainer>

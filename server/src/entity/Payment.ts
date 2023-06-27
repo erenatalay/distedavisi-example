@@ -16,10 +16,10 @@ export class Payment {
   @OneToOne(() => Appointment)
   appointment: Appointment;
 
-  @ManyToOne(() => Clinics,clinics => clinics.payment)
+  @ManyToOne(() => Clinics, clinics => clinics.payment)
   clinic: Clinics;
 
-  @ManyToOne(() => Treatments,treatments => treatments.payment)
+  @ManyToOne(() => Treatments, treatments => treatments.payment)
   treatment: Treatments;
 
   @Column()
@@ -32,5 +32,8 @@ export class Payment {
   amount: string;
 
   @Column({nullable : true})
+  dateTime: Date;
+
+  @Column({ nullable: true })
   description: string;
 }

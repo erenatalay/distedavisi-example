@@ -7,5 +7,7 @@ export interface PaymentRequest {
     description: string
     clinic: number
     treatment: number
+    dateTime : Date;
+
   }
   

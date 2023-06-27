@@ -11,6 +11,8 @@ class PaymentValidation {
       description: Joi.string(),
       clinic: Joi.number().required(),
       treatment: Joi.number().required(),
+      dateTime: Joi.date().required(),
+
     });
   }
   updateValidation() {
@@ -23,6 +25,8 @@ class PaymentValidation {
       description: Joi.string(),
       clinic: Joi.number().required(),
       treatment: Joi.number().required(),
+      dateTime: Joi.date().required(),
+
     });
   }
 }

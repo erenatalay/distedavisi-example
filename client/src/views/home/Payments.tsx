@@ -58,21 +58,16 @@ const Payments = () => {
             amount,
             treatment: Number(query.get("treatment")),
             clinic: Number(query.get("clinic")),
+            dateTime: dateTime
         }).then((res: any) => {
-            const paymentId = res.data.data.id
+            const paymentId = res?.data?.data?.id
             createAppointment({
                 treatment: Number(query.get("treatment")),
                 clinic: Number(query.get("clinic")),
                 doctor: Number(query.get("doctor")),
                 payment: Number(paymentId),
                 dateTime: dateTime
-            }).then(() => {
-                alert("appointment created successfully")
-                window.location.href = "/#/appointment"
-
             })
-        }).catch((error) => {
-            window.alert(error.data.error.message);
         })
     };
     const amount = String((100 / Number(query.get("commission"))) * Number(query.get("price")))

@@ -64,9 +64,12 @@ class Appointments {
         return next(new CustomError("2 payment systems cannot be used at the same time.", 400));
       }
 
-      console.log("tarihinBurada",new Date(dateTime).getHours())
-      if (6 >=  Number(new Date(dateTime).getHours()) &&  new Date(dateTime).getHours() <= 19) {
-        return next(new CustomError("You can't get it between these hours", 400));
+      if (6 >=  Number(new Date(dateTime).getHours())) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
+      }
+
+      if (new Date(dateTime).getHours() > 19) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
       }
 
 

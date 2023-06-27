@@ -29,7 +29,7 @@ class linkPayment {
       res: Response,
       next: NextFunction
     ) => {
-      const { clinic, description, paymentLink, treatment } = req.body;
+      const { clinic, description, paymentLink, treatment,dateTime } = req.body;
       const clinics = await ClinicsService.find({ id: clinic }) as Clinics;
       const treatments = await TreatmentsService.find({ id: treatment }) as Treatments;
       if (!treatments) {
@@ -46,7 +46,17 @@ class linkPayment {
         paymentLink,
         treatment: treatments,
         clinic: clinics,
+        dateTime
       });
+
+
+      if (6 >=  Number(new Date(dateTime).getHours())) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
+      }
+
+      if (new Date(dateTime).getHours() > 19) {
+        return next(new CustomError("6 and 19 o'clock you must make an appointment", 400));
+      }
       res.status(200).json({
         success: true,
         data: linkPayment,
